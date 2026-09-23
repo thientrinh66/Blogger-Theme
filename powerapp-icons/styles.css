@@ -1,0 +1,267 @@
+/* Power App Icons — always light */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Figtree, "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(900px 420px at 8% -10%, rgba(0, 164, 239, 0.14), transparent 60%),
+    radial-gradient(700px 380px at 100% 0%, rgba(0, 120, 212, 0.1), transparent 55%),
+    #f2f6fa;
+  color: #0f172a;
+}
+
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 16px 8px;
+}
+
+.site-header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+.site-header p {
+  margin: 0;
+  color: #64748b;
+  max-width: 52ch;
+  font-size: 0.98rem;
+}
+
+.site-header a {
+  color: #0078d4;
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px 40px;
+}
+
+#pp-icons,
+#pp-icons .ppi-app {
+  background: #fff;
+  color: #0f172a;
+}
+
+#pp-icons {
+  margin: 4px 0 12px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.ppi-lead {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.ppi-panel {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.ppi-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+  z-index: 1;
+  position: relative;
+}
+
+.ppi-libs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+
+.ppi-libs button {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 999px;
+  padding: 6px 11px;
+  font: 600 12px inherit;
+  cursor: pointer;
+}
+
+.ppi-libs button.active {
+  background: #0078d4;
+  color: #fff;
+  border-color: transparent;
+}
+
+.ppi-search {
+  flex: 1 1 200px;
+}
+
+.ppi-search input,
+.ppi-size input {
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 9px 11px;
+  font: 500 13px inherit;
+  background: #fff;
+  color: #0f172a;
+}
+
+.ppi-color,
+.ppi-size {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.ppi-color input[type="color"] {
+  width: 36px;
+  height: 32px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 2px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.ppi-size input {
+  width: 68px;
+}
+
+.ppi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  gap: 8px;
+  padding: 14px 12px 12px;
+  max-height: 70vh;
+  overflow: auto;
+  background: #fff;
+}
+
+.ppi-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  min-height: 56px;
+  aspect-ratio: 1;
+  font: inherit;
+  color: #0f172a;
+}
+
+.ppi-card:hover {
+  border-color: #0078d4;
+}
+
+.ppi-card.active {
+  border-color: #0078d4;
+  box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+}
+
+.ppi-prev {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+}
+
+.ppi-prev img,
+.ppi-prev svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.ppi-status {
+  padding: 16px;
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  background: #fff;
+}
+
+.ppi-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px 14px;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ppi-page-btn {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 8px;
+  padding: 7px 11px;
+  font: 600 12px inherit;
+  cursor: pointer;
+  min-width: 36px;
+}
+
+.ppi-page-btn:hover:not(:disabled) {
+  border-color: #0078d4;
+}
+
+.ppi-page-btn.active {
+  background: #0078d4;
+  color: #fff;
+  border-color: transparent;
+}
+
+.ppi-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ppi-page-info {
+  font-size: 12px;
+  color: #64748b;
+  margin-left: 6px;
+  font-weight: 600;
+}
+
+.ppi-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(16px);
+  background: #0f172a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font: 600 13px inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  z-index: 9999;
+}
+
+.ppi-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

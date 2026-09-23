@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Blogger Code Block",
+  "version": "1.0.0",
+  "description": "Chen code block Probha vao bai Blogger - chon ngon ngu.",
+  "permissions": ["activeTab"],
+  "host_permissions": [
+    "https://www.blogger.com/*",
+    "https://blogger.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.blogger.com/*",
+        "https://blogger.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
