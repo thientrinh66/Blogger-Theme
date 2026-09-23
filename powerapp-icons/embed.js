@@ -71,7 +71,7 @@
 
     root.innerHTML =
       '<div class="ppi-app">' +
-      '<p class="ppi-lead">Click an icon to copy Power Apps YAML.</p>' +
+      '<p class="ppi-lead">Click to copy YAML · Right-click to copy SVG.</p>' +
       '<section class="ppi-panel">' +
       '<div class="ppi-toolbar">' +
       '<div class="ppi-libs" id="ppi-libs"></div>' +
@@ -488,7 +488,7 @@
       }
     }
 
-    function selectIcon(full) {
+    function selectIcon(full, asSvg) {
       state.selected = full;
       Array.prototype.forEach.call(el.grid.querySelectorAll(".ppi-card"), function (c) {
         c.classList.toggle("active", c.getAttribute("data-icon") === full);
@@ -497,8 +497,9 @@
         .then(function (svg) {
           if (!svg) throw new Error("no svg");
           state.svg = svg;
-          return navigator.clipboard.writeText(buildYaml(svg)).then(function () {
-            toast("Copied YAML");
+          var text = asSvg ? svg : buildYaml(svg);
+          return navigator.clipboard.writeText(text).then(function () {
+            toast(asSvg ? "Copied SVG" : "Copied YAML");
           });
         })
         .catch(function () {
@@ -546,7 +547,13 @@
     el.grid.addEventListener("click", function (e) {
       var card = e.target.closest(".ppi-card");
       if (!card) return;
-      selectIcon(card.getAttribute("data-icon"));
+      selectIcon(card.getAttribute("data-icon"), false);
+    });
+    el.grid.addEventListener("contextmenu", function (e) {
+      var card = e.target.closest(".ppi-card");
+      if (!card) return;
+      e.preventDefault();
+      selectIcon(card.getAttribute("data-icon"), true);
     });
     el.pager.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-page]");
