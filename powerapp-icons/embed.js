@@ -71,7 +71,7 @@
 
     root.innerHTML =
       '<div class="ppi-app">' +
-      '<p class="ppi-lead">Click to copy YAML · Right-click to copy SVG.</p>' +
+      '<p class="ppi-lead">Click to copy YAML · Right-click to copy SVG (vector for PowerPoint).</p>' +
       '<section class="ppi-panel">' +
       '<div class="ppi-toolbar">' +
       '<div class="ppi-libs" id="ppi-libs"></div>' +
@@ -488,6 +488,16 @@
       }
     }
 
+    function copySvgAsVector(svg) {
+      if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+        var item = new ClipboardItem({
+          "image/svg+xml": new Blob([svg], { type: "image/svg+xml" })
+        });
+        return navigator.clipboard.write([item]);
+      }
+      return Promise.reject(new Error("clipboard svg unsupported"));
+    }
+
     function selectIcon(full, asSvg) {
       state.selected = full;
       Array.prototype.forEach.call(el.grid.querySelectorAll(".ppi-card"), function (c) {
@@ -497,13 +507,17 @@
         .then(function (svg) {
           if (!svg) throw new Error("no svg");
           state.svg = svg;
-          var text = asSvg ? svg : buildYaml(svg);
-          return navigator.clipboard.writeText(text).then(function () {
-            toast(asSvg ? "Copied SVG" : "Copied YAML");
+          if (asSvg) {
+            return copySvgAsVector(svg).then(function () {
+              toast("Copied SVG (vector)");
+            });
+          }
+          return navigator.clipboard.writeText(buildYaml(svg)).then(function () {
+            toast("Copied YAML");
           });
         })
         .catch(function () {
-          toast("Copy failed");
+          toast("Copy failed — dùng Chrome/Edge mới");
         });
     }
 
