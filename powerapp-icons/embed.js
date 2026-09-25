@@ -71,7 +71,7 @@
 
     root.innerHTML =
       '<div class="ppi-app">' +
-      '<p class="ppi-lead">Click to copy YAML · Right-click to copy SVG (vector for PowerPoint).</p>' +
+      '<p class="ppi-lead">Click an icon to copy Power Apps YAML.</p>' +
       '<section class="ppi-panel">' +
       '<div class="ppi-toolbar">' +
       '<div class="ppi-libs" id="ppi-libs"></div>' +
@@ -488,17 +488,7 @@
       }
     }
 
-    function copySvgAsVector(svg) {
-      if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
-        var item = new ClipboardItem({
-          "image/svg+xml": new Blob([svg], { type: "image/svg+xml" })
-        });
-        return navigator.clipboard.write([item]);
-      }
-      return Promise.reject(new Error("clipboard svg unsupported"));
-    }
-
-    function selectIcon(full, asSvg) {
+    function selectIcon(full) {
       state.selected = full;
       Array.prototype.forEach.call(el.grid.querySelectorAll(".ppi-card"), function (c) {
         c.classList.toggle("active", c.getAttribute("data-icon") === full);
@@ -507,17 +497,12 @@
         .then(function (svg) {
           if (!svg) throw new Error("no svg");
           state.svg = svg;
-          if (asSvg) {
-            return copySvgAsVector(svg).then(function () {
-              toast("Copied SVG (vector)");
-            });
-          }
           return navigator.clipboard.writeText(buildYaml(svg)).then(function () {
             toast("Copied YAML");
           });
         })
         .catch(function () {
-          toast("Copy failed — dùng Chrome/Edge mới");
+          toast("Copy failed");
         });
     }
 
@@ -561,13 +546,7 @@
     el.grid.addEventListener("click", function (e) {
       var card = e.target.closest(".ppi-card");
       if (!card) return;
-      selectIcon(card.getAttribute("data-icon"), false);
-    });
-    el.grid.addEventListener("contextmenu", function (e) {
-      var card = e.target.closest(".ppi-card");
-      if (!card) return;
-      e.preventDefault();
-      selectIcon(card.getAttribute("data-icon"), true);
+      selectIcon(card.getAttribute("data-icon"));
     });
     el.pager.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-page]");
